@@ -3,7 +3,12 @@
 
 <form action="<%= posts_url %>" method="POST">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="post[sub_id]" value="<%= current_user.s %>%">
+  <input type="hidden" name="post[sub_ids][]">
+  <% @subs.each do |sub| %> 
+      <label><%= sub.title %>
+      <input type="checkbox" name="post[sub_ids][]" value="<%= sub.id %>"><br>
+      </label>
+  <% end %>
   <label>title
     <input type="text" name="post[title]" value="<%= @post.title %>">
   </label>
